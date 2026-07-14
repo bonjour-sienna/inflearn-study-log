@@ -17,7 +17,7 @@ fi
 # Day 번호 = 지금까지 쓴 로그 개수 + 1
 N=$(($(find . -path ./.git -prune -o -name '20??-??-??.md' -print | wc -l) + 1))
 
-mkdir -p "$MONTH/images"
+mkdir -p "$MONTH"
 
 cat > "$FILE" <<EOF
 # Day $N — $DATE ($DOW)
@@ -29,10 +29,6 @@ cat > "$FILE" <<EOF
 
 -
 
-## 캡처
-
-![](images/$DATE-1.png)
-
 ## 한 줄 소감 (인증글용)
 
 EOF
@@ -40,4 +36,3 @@ EOF
 echo "| $N | $DATE ($DOW) |  |  | [📝]($FILE) |" >> README.md
 
 echo "생성 완료: $FILE (Day $N)"
-echo "캡처 이미지는 $MONTH/images/$DATE-1.png 로 저장하세요."
