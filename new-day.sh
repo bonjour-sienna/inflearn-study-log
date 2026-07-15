@@ -28,9 +28,6 @@ cat > "$FILE" <<EOF
 ## 오늘 배운 것
 
 -
-
-## 한 줄 소감 (인증글용)
-
 EOF
 
 echo "| $N | $DATE ($DOW) |  |  | [📝]($FILE) |" >> README.md
