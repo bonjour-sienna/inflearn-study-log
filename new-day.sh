@@ -14,8 +14,12 @@ if [[ -f "$FILE" ]]; then
   exit 0
 fi
 
-# Day 번호 = 지금까지 쓴 로그 개수 + 1
-N=$(($(find . -path ./.git -prune -o -name '20??-??-??.md' -print | wc -l) + 1))
+# Day 번호 = 시작일(2026-07-13 = Day 1)부터의 경과일 + 1
+# 로그 개수로 세면 하루라도 건너뛰었을 때 실제 날짜와 어긋난다.
+START=2026-07-13
+START_EPOCH=$(date -j -f "%Y-%m-%d" "$START" "+%s")
+TODAY_EPOCH=$(date -j -f "%Y-%m-%d" "$DATE" "+%s")
+N=$(( (TODAY_EPOCH - START_EPOCH) / 86400 + 1 ))
 
 mkdir -p "$MONTH"
 
